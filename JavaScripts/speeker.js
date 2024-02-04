@@ -1,6 +1,7 @@
 //create the request form html
-   const fpPromise = import('https://openfpcdn.io/fingerprintjs/v3')
+const fpPromise = import('https://openfpcdn.io/fingerprintjs/v4')
     .then(FingerprintJS => FingerprintJS.load())
+  
    var div_1 = document.createElement("div");
        div_1.id = 'custominput1';
        div_1.style.overflow = 'auto';
@@ -484,6 +485,7 @@ async function getFingerPrint(selectedLenguage) {
       const visitorId = result.visitorId
       visId = visitorId;
     })
+    
     arrChoosed[1] = visId;
 
     if(caller == 'request') {

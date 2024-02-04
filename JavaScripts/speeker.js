@@ -496,7 +496,7 @@ async function getFingerPrint(selectedLenguage) {
        arrChoosed[4] = txArea[0].value;
     }
 
-       httpPost('http://localhost:3030/SpeekersCorner',arrChoosed);
+       httpPost('https://speekerdbconnector.onrender.com/SpeekersCorner',arrChoosed);
 }
 
 

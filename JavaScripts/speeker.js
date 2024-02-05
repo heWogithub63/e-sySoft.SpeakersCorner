@@ -475,12 +475,12 @@ function calcDeleteDate() {
 }
 
 async function getFingerPrint(selectedLenguage) {
-   
+    var visitorId;
     fpPromise
     .then(fp => fp.get())
     .then(result => {
       // This is the visitor identifier:
-      const visitorId = result.visitorId
+         visitorId = result.visitorId
       });
       
     arrChoosed[1] = visitorId;

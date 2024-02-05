@@ -1,6 +1,6 @@
 //create the request form html
-   const fpPromise = import('https://openfpcdn.io/fingerprintjs/v4')
-    .then(FingerprintJS => FingerprintJS.load())
+   /*const fpPromise = import('https://openfpcdn.io/fingerprintjs/v4')
+    .then(FingerprintJS => FingerprintJS.load())*/
 
    var div_1 = document.createElement("div");
        div_1.id = 'custominput1';
@@ -475,13 +475,13 @@ function calcDeleteDate() {
 }
 
 async function getFingerPrint(selectedLenguage) {
-    var visitorId;
-    fpPromise
+    var visitorId = "";
+    /*fpPromise
     .then(fp => fp.get())
     .then(result => {
       // This is the visitor identifier:
          visitorId = result.visitorId
-      });
+      });*/
     arrChoosed[0] = caller;
     arrChoosed[1] = visitorId;
 

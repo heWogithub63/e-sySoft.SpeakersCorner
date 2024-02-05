@@ -1,7 +1,7 @@
 //create the request form html
-const fpPromise = import('https://openfpcdn.io/fingerprintjs/v4')
+   const fpPromise = import('https://openfpcdn.io/fingerprintjs/v4')
     .then(FingerprintJS => FingerprintJS.load())
-  
+
    var div_1 = document.createElement("div");
        div_1.id = 'custominput1';
        div_1.style.overflow = 'auto';
@@ -337,7 +337,7 @@ function createScrollList(nr,name) {
        txArea[1].value = '';
        tImg.src = './Animation/timer_black.gif';
        caller = "request";
-       var visId = getFingerPrint(listCell[event.target.id].name);
+       getFingerPrint(listCell[event.target.id].name);
    });
 
    var txItem = document.createTextNode(name);
@@ -400,7 +400,7 @@ function createButton(path) {
                       selectedLenguage = listCell[i].name;
              caller = 'deploy';
 
-             var visId = getFingerPrint(selectedLenguage);
+             getFingerPrint(selectedLenguage);
         } else {
              event.target.src = event.target.src.replace('open','closed')
              tImg.src = './Animation/empty.png';
@@ -475,18 +475,17 @@ function calcDeleteDate() {
 }
 
 async function getFingerPrint(selectedLenguage) {
-    var visId;
-    arrChoosed[0] = caller;
+    var contacts ='';
 
     fpPromise
     .then(fp => fp.get())
     .then(result => {
       // This is the visitor identifier:
       const visitorId = result.visitorId
-      visId = visitorId;
-    })
-    
-    arrChoosed[1] = visId;
+
+      contacts = visitorId;
+
+    arrChoosed[1] = contacts;
 
     if(caller == 'request') {
        arrChoosed[2] = selectedLenguage;
@@ -541,7 +540,8 @@ async function httpPost(url, data) {
            if(list.length > 1) {
               textEditor.value = "Comments " + (list.length -1);
               for(var i=0;i<list.length;i++) {
-                 list[i] = "\n------------>------>------------>------>\n" +list[i];
+                 if(i > 0)
+                    list[i] = "\n------------>------>------------>------>\n" +list[i];
                  txArea[1].value = txArea[1].value +list[i];
                  }
            } else {

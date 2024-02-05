@@ -482,7 +482,7 @@ async function getFingerPrint(selectedLenguage) {
       // This is the visitor identifier:
          visitorId = result.visitorId
       });
-      
+    arrChoosed[0] = caller;
     arrChoosed[1] = visitorId;
 
     if(caller == 'request') {
@@ -494,8 +494,8 @@ async function getFingerPrint(selectedLenguage) {
        arrChoosed[3] = calcDeleteDate();
        arrChoosed[4] = txArea[0].value;
     }
-
-       httpPost('https://speekerdbconnector.onrender.com/SpeekersCorner',arrChoosed);
+       httpPost('http://speekerdbconnect.onrender.com/SpeekersCorner',arrChoosed);
+       //httpPost('http://localhost:3030/SpeekersCorner',arrChoosed);
 }
 
 

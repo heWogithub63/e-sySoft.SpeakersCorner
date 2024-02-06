@@ -230,7 +230,7 @@
    var arrChoosed = [];
 
 
-function speeker() {
+function speaker() {
    var listRow = new Array();
    var row = document.createElement("tr");
    var row1 = document.createElement("tr");

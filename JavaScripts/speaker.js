@@ -266,14 +266,14 @@ function speaker() {
    var form1 = document.getElementById('form1');
    row.appendChild(createImg('./Pictures/empty1.png',40,40));
    row.appendChild(createTxArea(0,'write','custominput',false,5000,40,20));
-   row.appendChild(createImg('./Animation/speeker.gif', 140, 140));
+   row.appendChild(createImg('./Animation/speaker.gif', 140, 140));
    row.appendChild(createEditField('width:100px; border:0px solid #7f7f7f', 'userCount', ' Comments 0'));
    row.appendChild(createTxArea(1,'read','custominput',true,5000,40,20));
 
    row1.appendChild(createButton('./Pictures/saveBtn_closed.png'));
-   row1.appendChild(createImg('./Pictures/speeker_writing.png', 80, 80));
+   row1.appendChild(createImg('./Pictures/speaker_writing.png', 80, 80));
    row1.appendChild(cell1);
-   row1.appendChild(createImg('./Pictures/speeker_reading.png', 80, 80));
+   row1.appendChild(createImg('./Pictures/speaker_reading.png', 80, 80));
    row1.appendChild(createImg('./Animation/empty.png',40,40));
    
    tabl.appendChild(row);
@@ -494,7 +494,7 @@ async function getFingerPrint(selectedLenguage) {
        arrChoosed[3] = calcDeleteDate();
        arrChoosed[4] = txArea[0].value;
     }
-       httpPost('https://speekerdbconnector.onrender.com/SpeekersCorner',arrChoosed);
+       httpPost('https://speakerdbconnector.onrender.com/SpeakersCorner',arrChoosed);
        //httpPost('http://localhost:3030/SpeekersCorner',arrChoosed);
 }
 

@@ -286,7 +286,7 @@ function speaker() {
 
 function createImg(path,height,width) {
     
-    if(path.includes('speeker')) {
+    if(path.includes('speaker')) {
        var cell = document.createElement("td1");
        var oImg = document.createElement("img");
        oImg.setAttribute('src', path);

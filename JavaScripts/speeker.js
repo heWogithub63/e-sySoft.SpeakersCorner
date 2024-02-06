@@ -540,6 +540,9 @@ async function httpPost(url, data) {
               for(var i=0;i<list.length;i++) {
                  if(i > 0)
                     list[i] = "\n------------>------>------------>------>\n" +list[i];
+                 for (var x=0;x<list[i].length;x++)
+                     list[i] = list[i].replace('\\','°').replace('°n','\n').replace('\"','');
+
                  txArea[1].value = txArea[1].value +list[i];
                  }
            } else {

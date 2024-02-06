@@ -531,7 +531,7 @@ async function httpPost(url, data) {
               }
 
            txArea[1].value = txArea[1].value +"\n------------>------>------------>------>\n"+ txArea[0].value;
-
+           txArea[0].value = "";
         } else {
 
            var list = result.split("------------>");

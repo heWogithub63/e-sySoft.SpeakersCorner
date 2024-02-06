@@ -494,7 +494,7 @@ async function getFingerPrint(selectedLenguage) {
        arrChoosed[3] = calcDeleteDate();
        arrChoosed[4] = txArea[0].value;
     }
-       httpPost('https://speakerdbconnector.onrender.com/SpeakersCorner',arrChoosed);
+       httpPost('https://speakersdbconnector.onrender.com/SpeakersCorner',arrChoosed);
        //httpPost('http://localhost:3030/SpeekersCorner',arrChoosed);
 }
 

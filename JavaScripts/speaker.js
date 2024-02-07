@@ -494,7 +494,7 @@ async function getFingerPrint(selectedLenguage) {
        arrChoosed[3] = calcDeleteDate();
        arrChoosed[4] = txArea[0].value;
     }
-       httpPost('https://mongodbconnector.onrender.com/SpeakersCorner',arrChoosed);
+       httpPost('https://mongodbconnector.onrender.com/SpeekersCorner',arrChoosed);
        //httpPost('http://localhost:3030/SpeekersCorner',arrChoosed);
 }
 
@@ -523,7 +523,7 @@ async function httpPost(url, data) {
 
 	    .catch(err=>console.log('fetch() failed'));
 
-        if(result.includes('commentsCount: ')) {
+        if(result !== null && result.includes('commentsCount: ')) {
            textEditor.value = "Comments " + (Number((textEditor.value).substring((textEditor.value).lastIndexOf(" ")+1)) +1);
            if((txArea[1].value).includes("Unfortunatly, with the choosed leng") ||
               (txArea[1].value).includes("To get comments in your lenguage")) {
@@ -532,7 +532,7 @@ async function httpPost(url, data) {
 
            txArea[1].value = txArea[1].value +"\n------------>------>------------>------>\n"+ txArea[0].value;
            txArea[0].value = "";
-        } else {
+        } else if(result !== null) {
 
            var list = result.split("------------>");
            if(list.length > 1) {

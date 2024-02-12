@@ -483,11 +483,10 @@ async function getFingerPrint(selectedLenguage) {
          visitorId = result.visitorId
       });*/
     arrChoosed[0] = caller;
-    arrChoosed[1] = visitorId;
+    arrChoosed[1] = getActualDate();
 
     if(caller == 'request') {
        arrChoosed[2] = selectedLenguage;
-       arrChoosed[3] = getActualDate();
 
     } else if(caller == 'deploy') {
        arrChoosed[2] = selectedLenguage;
@@ -523,7 +522,7 @@ async function httpPost(url, data) {
 
 	    .catch(err=>console.log('fetch() failed'));
 
-        if(result !== null && result.includes('commentsCount: ')) {
+        if(result !== "" && caller === 'deploy') {
            textEditor.value = "Comments " + (Number((textEditor.value).substring((textEditor.value).lastIndexOf(" ")+1)) +1);
            if((txArea[1].value).includes("Unfortunatly, with the choosed leng") ||
               (txArea[1].value).includes("To get comments in your lenguage")) {
@@ -532,12 +531,13 @@ async function httpPost(url, data) {
 
            txArea[1].value = txArea[1].value +"\n------------>------>------------>------>\n"+ txArea[0].value;
            txArea[0].value = "";
-        } else if(result !== null) {
+        } else if(result !== "" && caller === 'request') {
 
            var list = result.split("------------>");
            if(list.length > 1) {
               textEditor.value = "Comments " + (list.length -1);
               for(var i=0;i<list.length;i++) {
+
                  if(i > 0)
                     list[i] = "\n------------>------>------------>------>\n" +list[i];
                  for (var x=0;x<list[i].length;x++)

@@ -14,6 +14,7 @@
    var tabl = document.createElement("table1");
    
    var saveBtn = document.createElement('img');
+   var aImg = document.createElement("img");
    var tImg = document.createElement("img");
    var qrImg = document.createElement("img");
    var textEditor;
@@ -266,7 +267,7 @@ function speaker() {
    var form1 = document.getElementById('form1');
    row.appendChild(createImg('./Pictures/empty1.png',40,40));
    row.appendChild(createTxArea(0,'write','custominput',false,5000,40,20));
-   row.appendChild(createImg('./Animation/speaker.gif', 140, 140));
+   row.appendChild(createImg('./Animation/anim_0.gif', 140, 140));
    row.appendChild(createEditField('width:100px; border:0px solid #7f7f7f', 'userCount', ' Comments 0'));
    row.appendChild(createTxArea(1,'read','custominput',true,5000,40,20));
 
@@ -285,7 +286,15 @@ function speaker() {
 }
 
 function createImg(path,height,width) {
-    
+    if(path.includes('anim')) {
+        var cell = document.createElement("td1");
+           var oImg = document.createElement("img");
+           aImg.setAttribute('src', path);
+           aImg.setAttribute('name', 'oImg');
+           aImg.setAttribute('height', height);
+           aImg.setAttribute('width', width);
+           cell.appendChild(aImg);
+    }
     if(path.includes('speaker')) {
        var cell = document.createElement("td1");
        var oImg = document.createElement("img");
@@ -368,7 +377,11 @@ function createTxArea(nr,name,style,mode,maxLen,col,row) {
     txArea[nr].disabled = mode;
     txArea[nr].setAttribute("spell", false);
     txArea[nr].setAttribute("wrap", true);
-
+    if(nr === 0)
+       txArea[nr].addEventListener('focus', (event) => {
+            if(!event.target.value.includes("Write comments in what kind"))
+               aImg.src = './Animation/anim_1.gif';
+       })
    
     while (cell.childNodes.length >0) {
         cell.removeChild(cell.childNodes[0]);
@@ -398,6 +411,8 @@ function createButton(path) {
              for(var i = 0;i<listCell.length;i++)
                  if(listCell[i].style.color == 'blue')
                       selectedLenguage = listCell[i].name;
+
+             aImg.src = './Animation/anim_0.gif';
              caller = 'deploy';
 
              getFingerPrint(selectedLenguage);

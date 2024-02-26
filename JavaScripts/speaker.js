@@ -551,7 +551,7 @@ async function httpPost(url, data) {
            var list = result.split("------------>");
            if(list.length > 1) {
               textEditor.value = "Comments " + (list.length -1);
-              String[] text = new String[list.length];
+              var text = new Array[list.length];
               for(var i=0;i<list.length;i++) {
 
                  if(i > 0)

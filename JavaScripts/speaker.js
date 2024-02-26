@@ -549,20 +549,19 @@ async function httpPost(url, data) {
         } else if(result !== "" && caller === 'request') {
 
            var list = result.split("------------>");
+               list.reverse();
            if(list.length > 1) {
-              textEditor.value = "Comments " + (list.length -1);
-              var text = new Array[list.length];
-              for(var i=0;i<list.length;i++) {
+              textEditor.value = list[0].substring(4,list[0].indexOf(" -->")).replace(':', 's');
 
-                 if(i > 0)
-                    list[i] = "\nComment "+i+": -->------>----------->------>\n" +list[i];
+              for(var i=0;i<list.length;i++) {
+                 if(i>0)
+                    list[i] = "\n------>------>----------->------>\n\n" +list[i];
                  for (var x=0;x<list[i].length;x++)
                      list[i] = list[i].replace('\\','°').replace('°n','\n').replace('\"','');
 
-                 text[list.length -(i+1)] = list[i];
-                 }
-              for(var s = 0;s<text.length;s++)
-                 txArea[1].value = txArea[1].value +s;
+                 txArea[1].value = txArea[1].value + list[i];
+              }
+
            } else {
                 textEditor.value = "Comments 0";
                 txArea[1].value = "Unfortunatly, with the choosed lenguage,\nthere is no comment avaliable";

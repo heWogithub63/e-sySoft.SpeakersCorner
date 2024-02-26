@@ -551,15 +551,18 @@ async function httpPost(url, data) {
            var list = result.split("------------>");
            if(list.length > 1) {
               textEditor.value = "Comments " + (list.length -1);
+              String[] text = new String[list.length];
               for(var i=0;i<list.length;i++) {
 
                  if(i > 0)
-                    list[i] = "\n------------>------>------------>------>\n" +list[i];
+                    list[i] = "\nComment "+i+": -->------>----------->------>\n" +list[i];
                  for (var x=0;x<list[i].length;x++)
                      list[i] = list[i].replace('\\','°').replace('°n','\n').replace('\"','');
 
-                 txArea[1].value = txArea[1].value +list[i];
+                 text[list.length -(i+1)] = list[i];
                  }
+              for(String s : text)
+                 txArea[1].value = txArea[1].value +s;
            } else {
                 textEditor.value = "Comments 0";
                 txArea[1].value = "Unfortunatly, with the choosed lenguage,\nthere is no comment avaliable";

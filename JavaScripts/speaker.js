@@ -561,7 +561,7 @@ async function httpPost(url, data) {
 
                  text[list.length -(i+1)] = list[i];
                  }
-              for(String s : text)
+              for(var s = 0;s<text.length;s++)
                  txArea[1].value = txArea[1].value +s;
            } else {
                 textEditor.value = "Comments 0";

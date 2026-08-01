@@ -18,35 +18,16 @@
    var tImg = document.createElement("img");
    var qrImg = document.createElement("img");
    var textEditor;
-   var caller;
+   var caller = 'request';
    var lenguages =  [
-		"Czech",
-		"Danish",
-		"Dutch",
 		"English",
-		"French",
-		"German",
-		"Greek",
-		"Hungarian",
-		"Italian",
-		"Japanese",
-		"Korean",
-		"Norwegian",
-		"Polish",
-		"Portuguese",
-		"Russian",
-		"Serbian",
-		"Slovak",
-		"Slovene",
-		"Swedish",
-		"Thai",
-		"Turkish",
+		"German"
 		];
-   var selectedLenuage = "";
+   var selectedLenuage = "English";
 
    var listCell = new Array();
    var txArea = new Array();
-   var arrChoosed = [];
+   var arrChoosed = new Object();
 
 
 function speaker() {
@@ -101,6 +82,8 @@ function speaker() {
 
    form1.appendChild(tabl); // appends <table> into <form1>
    
+   tImg.src = './Animation/timer_black.gif';
+   getFingerPrint('English');
 }
 
 function createImg(path,height,width) {
@@ -154,6 +137,8 @@ function createScrollList(nr,name) {
    listCell[nr].id = nr;
    listCell[nr].name = lenguages[nr];
    listCell[nr].style.color = 'black';
+   if(name === 'English')
+      listCell[nr].style.color = 'blue';
    listCell[nr].addEventListener('click', (event) => {
        
        for(var i = 0;i<listCell.length;i++)
@@ -309,25 +294,19 @@ function calcDeleteDate() {
 
 async function getFingerPrint(selectedLenguage) {
     var visitorId = "";
-    /*fpPromise
-    .then(fp => fp.get())
-    .then(result => {
-      // This is the visitor identifier:
-         visitorId = result.visitorId
-      });*/
-    arrChoosed[0] = caller;
-    arrChoosed[1] = getActualDate();
-
-    if(caller == 'request') {
-       arrChoosed[2] = selectedLenguage;
-
-    } else if(caller == 'deploy') {
-       arrChoosed[2] = selectedLenguage;
-       arrChoosed[3] = calcDeleteDate();
-       arrChoosed[4] = txArea[0].value;
-    }
-       httpPost('https://mongodbconnector.onrender.com/SpeekersCorner',arrChoosed);
-       //httpPost('http://localhost:3030/SpeekersCorner',arrChoosed);
+    
+    arrChoosed =  {
+                    URI: "mongodb+srv://wh:admin01@cluster0.kmwrpfb.mongodb.net/?retryWrites=true&w=majority",
+                    Caller: caller +'_create',
+                    Date: getActualDate(),
+                    Language: selectedLenguage,
+                    CalcDate: calcDeleteDate(),
+                    TxValue: txArea[0].value
+                   } 
+    
+    //console.log(JSON.stringify(arrChoosed));
+    httpPost('https://mongodbconnector.onrender.com/SpeakersCorner',arrChoosed);
+    //httpPost('http://localhost:3030/SpeakersCorner',arrChoosed);
 }
 
 
